@@ -1,3 +1,7 @@
+"""
+A Cloud Function as a Snowpark script that reads transaction data from a source table,
+apply some transformations, and writes the results to a destination table.
+"""
 import json
 
 from snowflake.snowpark import Session
@@ -9,7 +13,18 @@ SECRET_ID = 'snowflake-user-config'
 SOURCE_TABLE = 'TRANSACTIONS_RAW.BANKS.TRANSACTIONS'
 DESTINATION_TABLE = 'TRANSACTIONS_RAW.BANKS.TRANSACTIONS_COUNTED_FROM_CF'
 
-def process_transactions(request):
+def process_transactions(request) -> str:
+    """
+    Cloud Function entry point to process transactions.
+
+    Args:
+        request (flask.Request): flask.Request object. Defined as convention for Cloud Functions.
+
+    Returns:
+        str: status message.
+    """
+    request_body = request.get_json()
+    print(f'Request: {request_body}')
     connection_parameters = json.loads(read_gcp_secret(project_id=PROJECT_ID, secret_id=SECRET_ID))
     session = Session.builder.configs(connection_parameters).create()
 
