@@ -1,0 +1,14 @@
+steps:
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'gcloud'
+    args:
+      - 'functions'
+      - 'deploy'
+      - 'transactions-processing'
+      - '--gen2'
+      - '--region=us-central1'
+      - '--runtime=python312'
+      - '--source=transactions-processing'
+      - '--entry-point=process_transactions'
+      - '--trigger-http'
+      - '-service-account=snowflake-cf-sa@project-6e4dc205-0d7d-44c6-975.iam.gserviceaccount.com'
