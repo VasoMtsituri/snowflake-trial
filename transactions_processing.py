@@ -1,6 +1,6 @@
 """
 A Snowpark script that reads transaction data from a source table,
-apply some transformations, and writes the results to a destination table.
+apply some cleaning and enrichment. Finally writes the results to a destination table.
 """
 import json
 
@@ -30,5 +30,5 @@ transactions = transactions.with_column('TRANSACTION_MONTH',
 transactions = transactions.with_column('TRANSACTION_YEAR',
                                         year(transactions['SETTLEMENT_DATE']))
 
-# Write the transformed data to the destination table
+# Write the transformed transactions data to the destination table
 transactions.write.mode('append').save_as_table(DESTINATION_TABLE)
