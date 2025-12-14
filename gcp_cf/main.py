@@ -34,7 +34,7 @@ def process_transactions(request) -> str:
     transactions = session.table(SOURCE_TABLE)
     transactions_count = transactions.group_by(transactions.ID).count()
 
-    transactions_count.write.mode("overwrite").save_as_table(DESTINATION_TABLE)
+    transactions_count.write.mode('overwrite').save_as_table(DESTINATION_TABLE)
     logging.info('Transactions processed successfully.')
 
     return 'OK'
