@@ -1,0 +1,40 @@
+main:
+  params: [input_args]
+  steps:
+    # ---------------------------------------------------------
+    # Step 1: Call the first Cloud Function
+    # ---------------------------------------------------------
+    - call_function_a:
+        call: http.post
+        args:
+          url: https://us-central1-project-6e4dc205-0d7d-44c6-975.cloudfunctions.net/transactions-processing
+          auth:
+            type: OIDC
+          body:
+            initial_input: ${input_args}
+        result: function_a_response
+
+    # ---------------------------------------------------------
+    # Step 2: Call the second Cloud Function
+    # (Uses output from Step 1)
+    # ---------------------------------------------------------
+    - call_function_b:
+        call: http.post
+        args:
+          url: https://us-central1-project-6e4dc205-0d7d-44c6-975.cloudfunctions.net/transactions-aggregated
+          auth:
+            type: OIDC
+          body:
+            # We access the JSON body of the previous response
+            previous_data: ${function_a_response.body}
+            timestamp: ${sys.now()}
+        result: function_b_response
+
+    # ---------------------------------------------------------
+    # Step 3: Return the final result
+    # ---------------------------------------------------------
+    - return_final_result:
+        return:
+          step_1_output: ${function_a_response.body}
+          step_2_output: ${function_b_response.body}
+          status: "Success"
