@@ -45,7 +45,7 @@ def process_transactions(request) -> str:
     transactions = transactions.with_column('SETTLEMENT_AMOUNT',
                                             bround(transactions['SETTLEMENT_AMOUNT'], 2))
 
-    # Extract month and year from SETTLEMENT_DATE
+    # Extract month and year from SETTLEMENT_DATE column
     transactions = transactions.with_column('TRANSACTION_MONTH',
                                             monthname(transactions['SETTLEMENT_DATE']))
     transactions = transactions.with_column('TRANSACTION_YEAR',
