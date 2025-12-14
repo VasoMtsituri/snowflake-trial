@@ -23,7 +23,7 @@ steps:
       - '--region=us-central1'
       - '--runtime=python312'
       - '--source=transactions-aggregated-cf'
-      - '--entry-point=process_transactions'
+      - '--entry-point=aggregate_transactions'
       - '--trigger-http'
       - '--service-account=snowflake-cf-sa@project-6e4dc205-0d7d-44c6-975.iam.gserviceaccount.com'
       - '--timeout=1000s'
