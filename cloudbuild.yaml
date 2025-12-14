@@ -11,6 +11,6 @@ steps:
       - '--source=transactions-processing'
       - '--entry-point=process_transactions'
       - '--trigger-http'
-      - '-service-account=snowflake-cf-sa@project-6e4dc205-0d7d-44c6-975.iam.gserviceaccount.com'
+      - '--service-account=snowflake-cf-sa@project-6e4dc205-0d7d-44c6-975.iam.gserviceaccount.com'
 options:
   logging: CLOUD_LOGGING_ONLY
