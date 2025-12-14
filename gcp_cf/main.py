@@ -3,10 +3,13 @@ A Cloud Function as a Snowpark script that reads transaction data from a source 
 apply some transformations, and writes the results to a destination table.
 """
 import json
+import logging
 
 from snowflake.snowpark import Session
 
 from gcp_cf.gcp_utils import read_gcp_secret
+
+logging.basicConfig(level=logging.INFO)
 
 PROJECT_ID = 'project-6e4dc205-0d7d-44c6-975'
 SECRET_ID = 'snowflake-user-config'
@@ -24,7 +27,7 @@ def process_transactions(request) -> str:
         str: status message.
     """
     request_body = request.get_json()
-    print(f'Request: {request_body}')
+    logging.info(f'Request: {request_body}')
     connection_parameters = json.loads(read_gcp_secret(project_id=PROJECT_ID, secret_id=SECRET_ID))
     session = Session.builder.configs(connection_parameters).create()
 
@@ -32,6 +35,6 @@ def process_transactions(request) -> str:
     transactions_count = transactions.group_by(transactions.ID).count()
 
     transactions_count.write.mode("overwrite").save_as_table(DESTINATION_TABLE)
-    print('Transactions processed successfully.')
+    logging.info('Transactions processed successfully.')
 
     return 'OK'

@@ -1,9 +1,12 @@
 """
 Utilities functions for GCP interactions.
 """
+import logging
+
 from google.cloud import secretmanager
 import google_crc32c
 
+logging.basicConfig(level=logging.INFO)
 
 def read_gcp_secret(project_id: str, secret_id: str, version_id: str = 'latest') -> str:
     """
@@ -32,12 +35,12 @@ def read_gcp_secret(project_id: str, secret_id: str, version_id: str = 'latest')
     crc32c = google_crc32c.Checksum()
     crc32c.update(response.payload.data)
     if response.payload.data_crc32c != int(crc32c.hexdigest(), 16):
-        print('Data corruption detected.')
+        logging.info('Data corruption detected.')
 
         return ''
 
     # Return the secret payload.
     payload = response.payload.data.decode()
-    print('Secret retrieved successfully.')
+    logging.info('Secret retrieved successfully.')
 
     return payload
