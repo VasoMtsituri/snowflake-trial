@@ -4,6 +4,7 @@ apply some transformations, and writes the results to a destination table.
 """
 import json
 import logging
+import os
 
 from snowflake.snowpark import Session
 from snowflake.snowpark.functions import bround, monthname, year
@@ -12,10 +13,10 @@ from gcp_utils import read_gcp_secret
 
 logging.basicConfig(level=logging.INFO)
 
-PROJECT_ID = 'project-6e4dc205-0d7d-44c6-975'
-SECRET_ID = 'snowflake-user-config'
-SOURCE_TABLE = 'TRANSACTIONS_RAW.BANKS.BOG'
-DESTINATION_TABLE = 'TRANSACTIONS.BANKS.BOG'
+PROJECT_ID = os.environ.get('PROJECT_ID')
+SECRET_ID = os.environ.get('SECRET_ID')
+SOURCE_TABLE = os.environ.get('SOURCE_TABLE')
+DESTINATION_TABLE = os.environ.get('DESTINATION_TABLE')
 
 def process_transactions(request) -> str:
     """
