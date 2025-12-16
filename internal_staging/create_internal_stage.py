@@ -1,3 +1,6 @@
+"""
+Creates an internal stage in Snowflake for BOG transactions with default encryption.
+"""
 import json
 
 from snowflake.core import Root

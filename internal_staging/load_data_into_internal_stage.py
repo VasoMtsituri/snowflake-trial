@@ -1,3 +1,6 @@
+"""
+This script uploads a local CSV file to an internal stage in Snowflake using Snowpark.
+"""
 import json
 
 from snowflake.core import Root
