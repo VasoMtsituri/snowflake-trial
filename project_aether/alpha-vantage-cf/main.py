@@ -59,8 +59,8 @@ def ingest_alpha_vantage_data(request) -> str:
         logging.info(success_message)
 
         return json.dumps({"message": success_message, "status_code": 200})
-    else:
-        error_message = f'Failed to retrieve the API data. Status code: {response.status_code}'
-        logging.error(error_message)
 
-        return json.dumps({"message": error_message, "error_code": response.status_code})
+    error_message = f'Failed to retrieve the API data. Status code: {response.status_code}'
+    logging.error(error_message)
+
+    return json.dumps({"message": error_message, "error_code": response.status_code})
