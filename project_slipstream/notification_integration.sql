@@ -1,0 +1,5 @@
+CREATE OR REPLACE NOTIFICATION INTEGRATION gcs_pubsub_int
+  TYPE = QUEUE
+  NOTIFICATION_PROVIDER = GCP_PUBSUB
+  ENABLED = TRUE
+  GCP_PUBSUB_SUBSCRIPTION_NAME = 'projects/project-6e4dc205-0d7d-44c6-975/subscriptions/snowflake-ingest-sub';

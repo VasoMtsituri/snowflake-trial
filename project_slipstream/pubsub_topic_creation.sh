@@ -1,0 +1,1 @@
+gsutil notification create -t snowflake-ingest-topic -f json gs://snowflake-ingestion-raw
