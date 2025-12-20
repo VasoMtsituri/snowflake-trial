@@ -49,7 +49,7 @@ def ingest_alpha_vantage_data(request) -> str:
     if response.status_code == 200:
         logging.info('API data retrieved successfully.')
 
-        last_100_days = response.json().get('Time Series (Daily)', {})
+        last_100_days = response.json()
 
         upload_dict_to_gcs(data_dict=last_100_days,
                            bucket_name=OUTPUT_GCS_BUCKET,
