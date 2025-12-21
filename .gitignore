@@ -208,3 +208,11 @@ __marimo__/
 
 .idea
 conn_config.json
+
+*.p8
+*.pub
+
+.terraform
+*.hcl
+*.tfstate
+*.iml
