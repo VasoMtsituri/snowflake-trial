@@ -1,3 +1,6 @@
+"""
+An example Airflow DAG that uses Cosmos to run dbt models against a Snowflake data warehouse.
+"""
 from datetime import datetime
 from pathlib import Path
 
