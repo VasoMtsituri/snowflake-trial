@@ -1,0 +1,28 @@
+name: 'AlphaVantageDataTransformation'
+version: '1.0.0'
+config-version: 2
+
+profile: 'AlphaVantageDataTransformation'
+
+model-paths: ["models"]
+test-paths: ["tests"]
+
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  alpha_vantage:
+    staging:
+      +materialized: view
+      database: ALPHA_VANTAGE_STAGING
+      +schema: ALPHA_VANTAGE
+#    intermediate:
+#      +materialized: view
+#      database: ALPHA_VANTAGE_INTERMEDIATE
+#      +schema: ALPHA_VANTAGE
+#    marts:
+#      +materialized: table
+#      database: ALPHA_VANTAGE_MARTS
+#      +schema: ALPHA_VANTAGE

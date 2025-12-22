@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: ALPHA_VANTAGE
+    database: SNOWFLAKE_CONNECTED_GCS_US
+    schema: PUBSUB_EVENTS
+    tables:
+      - name: RAW_EVENTS

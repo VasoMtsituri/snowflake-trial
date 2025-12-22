@@ -1,0 +1,12 @@
+AlphaVantageDataTransformation:
+ target: dev
+ outputs:
+  dev:
+   account: {{ env_var('DBT_ENV_SECRET_SNOWFLAKE_ACCOUNT') }}
+   authenticator: username_password_mfa
+   database: ALPHA_VANTAGE_STAGING
+   schema: ALPHA_VANTAGE
+   threads: 4
+   type: snowflake
+   user: VASOMTSITURI
+   password: {{ env_var('DBT_ENV_SECRET_ALPHA_VANTAGE_PWD') }}
