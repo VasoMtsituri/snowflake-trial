@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: ibm_stock
+    description: "IBM Stocks daily mart"
+    columns:
+      - name: COMPANY
+        description: "The primary key for this table"
+        data_tests:
+          - not_null
+      - name: TRADE_DATE
+        description: "The Date when the stock data was recorded"
+        data_tests:
+          - unique
+          - not_null
+  - name: nvidia_stock
+    description: "NVIDIA Stocks daily mart"
+    columns:
+      - name: COMPANY
+        description: "The primary key for this table"
+        data_tests:
+          - not_null
+      - name: TRADE_DATE
+        description: "The Date when the stock data was recorded"
+        data_tests:
+          - unique
+          - not_null

@@ -23,3 +23,8 @@ models:
     marts:
       +materialized: table
       +schema: MARTS
+      +data_tests:
+        unique:
+          +severity: error
+        not_null:
+          +severity: error
