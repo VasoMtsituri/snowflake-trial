@@ -7,5 +7,5 @@ SELECT
     f.value:"3. low"::NUMBER(19,4) as LOW_PRICE,
     f.value:"4. close"::NUMBER(19,4) as CLOSE_PRICE,
     f.value:"5. volume"::NUMBER(38,0) as VOLUME
-FROM alpha_vantage_stg_events,
+FROM {{ ref("alpha_vantage_stg_events") }},
 LATERAL FLATTEN(input => RAW_SERIES) f

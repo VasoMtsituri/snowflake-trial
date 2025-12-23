@@ -13,15 +13,13 @@ clean-targets:
   - "dbt_packages"
 
 models:
-  +transient: false
-  alpha_vantage:
+  AlphaVantageDataTransformation:
     staging:
       +materialized: view
-      +schema: ALPHA_VANTAGE
+      +schema: STAGING
     intermediate:
       +materialized: view
-      +schema: ALPHA_VANTAGE_INTERMEDIATE
-#    marts:
-#      +materialized: table
-#      database: ALPHA_VANTAGE_MARTS
-#      +schema: ALPHA_VANTAGE
+      +schema: INTERMEDIATE
+    marts:
+      +materialized: table
+      +schema: MARTS
