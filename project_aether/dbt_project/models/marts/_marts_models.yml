@@ -8,8 +8,8 @@ models:
         description: "The primary key for this table"
         data_tests:
           - not_null
-      - name: TRADE_DATE
-        description: "The Date when the stock data was recorded"
+      - name: UNIQUE_ID
+        description: "The Date when the stock data was recorded and company identifier"
         data_tests:
           - unique
           - not_null
@@ -20,8 +20,8 @@ models:
         description: "The primary key for this table"
         data_tests:
           - not_null
-      - name: TRADE_DATE
-        description: "The Date when the stock data was recorded"
+      - name: UNIQUE_ID
+        description: "The Date when the stock data was recorded and company identifier"
         data_tests:
           - unique
           - not_null
