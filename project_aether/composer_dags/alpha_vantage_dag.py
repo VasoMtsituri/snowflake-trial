@@ -9,16 +9,17 @@ from cosmos.profiles import SnowflakeUserPasswordProfileMapping
 
 # --- Configuration ---
 # Point to the directory where your dbt project lives
-DBT_PROJECT_PATH = Path("/usr/local/airflow/dags/dbt/my_snowflake_project")
 DBT_EXECUTABLE_PATH = Path("/usr/local/airflow/.local/bin/dbt")
+DAG_FOLDER = Path(__file__).parent
+DBT_PROJECT_PATH = DAG_FOLDER / "project_1"
 
 # Define how Cosmos should map Airflow connections to dbt profiles
 profile_config = ProfileConfig(
     profile_name="default",
     target_name="dev",
     profile_mapping=SnowflakeUserPasswordProfileMapping(
-        conn_id="snowflake_default", # The ID of your Airflow Connection
-        profile_args={"database": "MY_DB", "schema": "MY_SCHEMA"},
+        conn_id="snowflake_default",
+        profile_args={"database": "ALPHA_VANTAGE_STAGING", "schema": "ALPHA_VANTAGE"},
     ),
 )
 
@@ -37,7 +38,7 @@ snowflake_dbt_dag = DbtDag(
     ),
     # Standard Airflow DAG arguments
     schedule_interval=None,
-    start_date=datetime(2025, 12, 21),
+    start_date=datetime(2025, 12, 25),
     catchup=False,
     dag_id="snowflake_dbt_cosmos_dag",
 )
